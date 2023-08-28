@@ -7,7 +7,7 @@ import {
 } from 'expo-image-picker';
 import { Colors } from '../../constants/colors';
 import OutlineButton from '../../UI/OutlineButton';
-export default function ImagePicker() {
+export default function ImagePicker({ onTakeImage }) {
   const [clickImage, setClickImage] = useState('');
   const [cameraPermissionInformation, requestPermission] =
     useCameraPermissions();
@@ -35,6 +35,7 @@ export default function ImagePicker() {
       quality: 0.5,
     });
     setClickImage(image.uri);
+    onTakeImage(image.uri);
   }
 
   let imagePreview = <Text>No Imag taken yet.</Text>;
