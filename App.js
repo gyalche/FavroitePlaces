@@ -6,9 +6,17 @@ import Addplace from './screens/Addplace';
 import IconButton from './UI/IconButton';
 import { Colors } from './constants/colors';
 import Map from './screens/Map';
+import { useEffect } from 'react';
+import { init } from './utils/database';
 
 const stack = createNativeStackNavigator();
 export default function App() {
+  const [dbInitialize, setDbInitialize] = useState(false);
+  useEffect(() => {
+    init().then(() => {
+      setDbInitialize(true);
+    });
+  }, []);
   return (
     <>
       <StatusBar style="dark" />

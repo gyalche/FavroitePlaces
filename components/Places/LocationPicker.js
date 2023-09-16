@@ -12,6 +12,7 @@ import {
   useNavigation,
   useRoute,
 } from '@react-navigation/native';
+import { getAddress } from '../../utils/location';
 export default function LocationPicker({ onPickLocation }) {
   const [locationPermissionInformation, requestPermission] =
     useForegroundPermissions();
@@ -53,6 +54,7 @@ export default function LocationPicker({ onPickLocation }) {
       lat: location.coords.latitude,
       lng: location.coords.longitude,
     });
+    getAddress(mapLocation.lat, mapLocation.lng);
     onPickLocation(location);
   }
   function pickOnMapHandler() {
